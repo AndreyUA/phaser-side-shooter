@@ -1,9 +1,10 @@
 import * as Phaser from "phaser";
 
+import { SceneKeys } from "../constants/scenes";
+
 export class MainScene extends Phaser.Scene {
   constructor() {
-    // TODO: create enum with scene keys
-    super({ key: "main", active: true });
+    super({ key: SceneKeys.MAIN, active: true });
   }
 
   preload(): void {}
