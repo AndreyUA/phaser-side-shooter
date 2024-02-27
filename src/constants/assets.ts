@@ -1,0 +1,3 @@
+export enum AssetKeys {
+  MAIN_SCENE_BACKGROUND = "MAIN_SCENE_BACKGROUND",
+}
