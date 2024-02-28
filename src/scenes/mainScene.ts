@@ -5,7 +5,7 @@ import { AssetKeys } from "../constants/assets";
 
 export class MainScene extends Phaser.Scene {
   constructor() {
-    super({ key: SceneKeys.MAIN, active: true });
+    super({ key: SceneKeys.MAIN, active: false });
   }
 
   create(): void {
