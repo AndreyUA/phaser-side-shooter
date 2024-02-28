@@ -1,15 +1,20 @@
 import * as Phaser from "phaser";
 
 import { SceneKeys } from "../constants/scenes";
+import { AssetKeys } from "../constants/assets";
 
 export class BootScene extends Phaser.Scene {
   constructor() {
-    super({ key: SceneKeys.BOOT, active: false });
+    super({ key: SceneKeys.BOOT, active: true });
   }
 
-  create(): void {}
+  preload(): void {
+    this.load.image(AssetKeys.MAIN_SCENE_BACKGROUND, "./background.png");
+  }
 
-  preload(): void {}
+  create(): void {
+    this.scene.start(SceneKeys.PRELOAD);
+  }
 
   update(time: number, delta: number): void {}
 }

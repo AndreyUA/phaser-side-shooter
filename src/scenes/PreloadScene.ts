@@ -7,9 +7,11 @@ export class PreloadScene extends Phaser.Scene {
     super({ key: SceneKeys.PRELOAD, active: false });
   }
 
-  create(): void {}
-
   preload(): void {}
+
+  create(): void {
+    this.scene.start(SceneKeys.MAIN);
+  }
 
   update(time: number, delta: number): void {}
 }

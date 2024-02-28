@@ -8,17 +8,15 @@ export class MainScene extends Phaser.Scene {
     super({ key: SceneKeys.MAIN, active: false });
   }
 
+  preload(): void {}
+
   create(): void {
     this.createBackground();
   }
 
+  update(time: number, delta: number): void {}
+
   createBackground(): void {
     this.add.sprite(0, 0, AssetKeys.MAIN_SCENE_BACKGROUND).setOrigin(0, 0);
   }
-
-  preload(): void {
-    this.load.image(AssetKeys.MAIN_SCENE_BACKGROUND, "./background.png");
-  }
-
-  update(time: number, delta: number): void {}
 }
