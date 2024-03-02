@@ -18,5 +18,5 @@ export class BootScene extends Phaser.Scene {
     this.scene.start(SceneKeys.PRELOAD);
   }
 
-  update(time: number, delta: number): void {}
+  update(_time: number, _delta: number): void {}
 }

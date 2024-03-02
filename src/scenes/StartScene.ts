@@ -18,7 +18,7 @@ export class StartScene extends Phaser.Scene {
     this.createTapListener();
   }
 
-  update(time: number, delta: number): void {}
+  update(_time: number, _delta: number): void {}
 
   createBackground(): void {
     this.add.sprite(0, 0, AssetKeys.MAIN_SCENE_BACKGROUND).setOrigin(0, 0);

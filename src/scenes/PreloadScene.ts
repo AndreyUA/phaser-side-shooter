@@ -15,5 +15,5 @@ export class PreloadScene extends Phaser.Scene {
     this.scene.start(SceneKeys.START);
   }
 
-  update(time: number, delta: number): void {}
+  update(_time: number, _delta: number): void {}
 }

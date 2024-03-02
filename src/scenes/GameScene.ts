@@ -16,7 +16,7 @@ export class GameScene extends Phaser.Scene {
     this.createBackground();
   }
 
-  update(time: number, delta: number): void {}
+  update(_time: number, _delta: number): void {}
 
   createBackground(): void {
     this.add.sprite(0, 0, AssetKeys.MAIN_SCENE_BACKGROUND).setOrigin(0, 0);
