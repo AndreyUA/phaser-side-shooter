@@ -1,6 +1,6 @@
 export enum SceneKeys {
-  MAIN = "MAIN",
+  GAME = "GAME",
   BOOT = "BOOT",
   PRELOAD = "PRELOAD",
-  GAME = "GAME",
+  START = "START",
 }

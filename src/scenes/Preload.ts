@@ -10,7 +10,9 @@ export class PreloadScene extends Phaser.Scene {
   preload(): void {}
 
   create(): void {
-    this.scene.start(SceneKeys.MAIN);
+    console.log("Preload scene was created!");
+
+    this.scene.start(SceneKeys.START);
   }
 
   update(time: number, delta: number): void {}

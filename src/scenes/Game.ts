@@ -3,14 +3,16 @@ import * as Phaser from "phaser";
 import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
 
-export class MainScene extends Phaser.Scene {
+export class GameScene extends Phaser.Scene {
   constructor() {
-    super({ key: SceneKeys.MAIN, active: false });
+    super({ key: SceneKeys.GAME, active: false });
   }
 
   preload(): void {}
 
   create(): void {
+    console.log("Game scene was created!");
+
     this.createBackground();
   }
 

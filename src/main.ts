@@ -2,16 +2,16 @@ import "./style.css";
 
 import * as Phaser from "phaser";
 
-import { BootScene } from "./scenes/BootScene";
-import { PreloadScene } from "./scenes/PreloadScene";
-import { MainScene } from "./scenes/MainScene";
-import { GameScene } from "./scenes/GameScene";
+import { BootScene } from "./scenes/Boot";
+import { PreloadScene } from "./scenes/Preload";
+import { StartScene } from "./scenes/Start";
+import { GameScene } from "./scenes/Game";
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 1280,
   height: 720,
-  scene: [BootScene, PreloadScene, MainScene, GameScene],
+  scene: [BootScene, PreloadScene, StartScene, GameScene],
 };
 
 new Phaser.Game(config);

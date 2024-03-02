@@ -13,6 +13,8 @@ export class BootScene extends Phaser.Scene {
   }
 
   create(): void {
+    console.log("Boot scene was created!");
+
     this.scene.start(SceneKeys.PRELOAD);
   }
 
