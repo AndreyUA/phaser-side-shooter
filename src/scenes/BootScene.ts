@@ -8,6 +8,10 @@ export class BootScene extends Phaser.Scene {
     super({ key: SceneKeys.BOOT, active: true });
   }
 
+  init(): void {
+    console.log("Boot scene was initialized!");
+  }
+
   preload(): void {
     this.load.image(AssetKeys.MAIN_SCENE_BACKGROUND, "./background.png");
   }

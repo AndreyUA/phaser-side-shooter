@@ -12,6 +12,10 @@ export class GameScene extends Phaser.Scene {
     super({ key: SceneKeys.GAME, active: false });
   }
 
+  init(): void {
+    console.log("Game scene was initialized!");
+  }
+
   preload(): void {}
 
   create(): void {

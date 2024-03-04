@@ -8,6 +8,10 @@ export class PreloadScene extends Phaser.Scene {
     super({ key: SceneKeys.PRELOAD, active: false });
   }
 
+  init(): void {
+    console.log("Preload scene was initialized!");
+  }
+
   preload(): void {
     this.load.atlas(AssetKeys.DRAGON_ATLAS, "./dragon.png", "./dragon.json");
   }

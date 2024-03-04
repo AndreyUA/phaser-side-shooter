@@ -8,6 +8,10 @@ export class StartScene extends Phaser.Scene {
     super({ key: SceneKeys.START, active: false });
   }
 
+  init(): void {
+    console.log("Start scene was initialized!");
+  }
+
   preload(): void {}
 
   create(): void {
