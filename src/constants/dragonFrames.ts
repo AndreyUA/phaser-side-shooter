@@ -1,8 +1,8 @@
 export enum DragonFrames {
-  FIRST = "dragon1",
-  SECOND = "dragon2",
-  THIRD = "dragon3",
-  FOURTH = "dragon4",
-  FIFTH = "dragon5",
-  SIXTH = "dragon6",
+  DRAGON_1 = "dragon1",
+  DRAGON_2 = "dragon2",
+  DRAGON_3 = "dragon3",
+  DRAGON_4 = "dragon4",
+  DRAGON_5 = "dragon5",
+  DRAGON_6 = "dragon6",
 }

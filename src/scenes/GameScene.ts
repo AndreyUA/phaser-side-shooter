@@ -30,7 +30,7 @@ export class GameScene extends Phaser.Scene {
         80,
         +this.game.config.height / 2,
         AssetKeys.DRAGON_ATLAS,
-        DragonFrames.FIRST
+        DragonFrames.DRAGON_1
       )
       .setOrigin(0, 0);
   }
