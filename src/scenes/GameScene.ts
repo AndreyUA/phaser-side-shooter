@@ -6,6 +6,7 @@ import { Dragon } from "../prefabs/Dragon";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
+  cursors: Phaser.Types.Input.Keyboard.CursorKeys | null = null;
 
   constructor() {
     super({ key: SceneKeys.GAME, active: false });
@@ -17,13 +18,24 @@ export class GameScene extends Phaser.Scene {
     console.log("Game scene was created!");
 
     this.createBackground();
+    this.createCursorKeys();
     this.createDragon();
   }
 
-  update(_time: number, _delta: number): void {}
+  update(_time: number, _delta: number): void {
+    this.dragon?.onMove();
+  }
 
   createBackground(): void {
     this.add.sprite(0, 0, AssetKeys.MAIN_SCENE_BACKGROUND).setOrigin(0, 0);
+  }
+
+  createCursorKeys(): void {
+    if (!this.input.keyboard) {
+      return;
+    }
+
+    this.cursors = this.input.keyboard.createCursorKeys();
   }
 
   createDragon(): void {
