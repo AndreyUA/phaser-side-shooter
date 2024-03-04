@@ -2,7 +2,7 @@ import * as Phaser from "phaser";
 
 import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
-import { DragonFrames } from "../constants/dragonFrames";
+import { Dragon } from "../prefabs/Dragon";
 
 export class GameScene extends Phaser.Scene {
   constructor() {
@@ -25,13 +25,10 @@ export class GameScene extends Phaser.Scene {
   }
 
   createDragon(): void {
-    this.add
-      .sprite(
-        80,
-        +this.game.config.height / 2,
-        AssetKeys.DRAGON_ATLAS,
-        DragonFrames.DRAGON_1
-      )
-      .setOrigin(0, 0);
+    const dragon = new Dragon(
+      this,
+      +this.game.config.width * 0.1,
+      +this.game.config.height / 2
+    );
   }
 }
