@@ -5,6 +5,8 @@ import { AssetKeys } from "../constants/assets";
 import { Dragon } from "../prefabs/Dragon";
 
 export class GameScene extends Phaser.Scene {
+  dragon: Dragon | null = null;
+
   constructor() {
     super({ key: SceneKeys.GAME, active: false });
   }
@@ -25,7 +27,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   createDragon(): void {
-    const dragon = new Dragon(
+    this.dragon = new Dragon(
       this,
       +this.game.config.width * 0.1,
       +this.game.config.height / 2
