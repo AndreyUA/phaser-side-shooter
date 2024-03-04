@@ -14,6 +14,8 @@ export class GameScene extends Phaser.Scene {
 
   init(): void {
     console.log("Game scene was initialized!");
+
+    this.createCursorKeys();
   }
 
   preload(): void {}
@@ -22,7 +24,6 @@ export class GameScene extends Phaser.Scene {
     console.log("Game scene was created!");
 
     this.createBackground();
-    this.createCursorKeys();
     this.createDragon();
   }
 
