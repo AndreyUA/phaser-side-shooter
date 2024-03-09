@@ -69,10 +69,6 @@ export class GameScene extends Phaser.Scene {
   }
 
   createEnemy(): void {
-    this.enemy = new Enemy(
-      this,
-      +this.game.config.width * 0.9,
-      +this.game.config.height * 0.1
-    );
+    this.enemy = Enemy.generateEnemy(this);
   }
 }
