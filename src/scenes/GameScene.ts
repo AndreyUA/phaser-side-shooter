@@ -7,7 +7,7 @@ import { Enemy } from "../prefabs/Enemy";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
-  enemy: Enemy | null = null;
+  enemyGroup: Phaser.Physics.Arcade.Group | null = null;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys | null = null;
   backgroundTileSprite: Phaser.GameObjects.TileSprite | null = null;
 
@@ -33,7 +33,11 @@ export class GameScene extends Phaser.Scene {
 
   update(_time: number, _delta: number): void {
     this.dragon?.onMove();
-    this.enemy?.onMove();
+
+    const firstEnemy = this.enemyGroup?.getChildren()[0] as Enemy;
+    if (firstEnemy && this.enemyGroup) {
+      this.enemyGroup.setVelocityX(firstEnemy.velocity);
+    }
 
     if (this.backgroundTileSprite) {
       this.backgroundTileSprite.tilePositionX += 0.6;
@@ -69,6 +73,10 @@ export class GameScene extends Phaser.Scene {
   }
 
   createEnemy(): void {
-    this.enemy = Enemy.generateEnemy(this);
+    this.enemyGroup = this.physics.add.group();
+
+    this.enemyGroup.add(Enemy.generateEnemy(this));
+    this.enemyGroup.add(Enemy.generateEnemy(this));
+    this.enemyGroup.add(Enemy.generateEnemy(this));
   }
 }

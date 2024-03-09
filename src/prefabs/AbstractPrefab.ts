@@ -7,7 +7,7 @@ import { DragonFrames } from "../constants/dragonFrames";
 
 export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
   scene: GameScene;
-  protected velocity: number = 0;
+  velocity: number = 0;
 
   constructor(
     scene: GameScene,

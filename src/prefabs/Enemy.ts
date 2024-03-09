@@ -19,12 +19,6 @@ export class Enemy extends AbstractPrefab {
     );
   }
 
-  onMove(): void {
-    super.onMove();
-
-    this.setVelocityX(this.velocity);
-  }
-
   static generateEnemy(scene: GameScene): Enemy {
     const x = +scene.game.config.width + +scene.game.config.width * 0.1;
     const y = Phaser.Math.RND.between(
