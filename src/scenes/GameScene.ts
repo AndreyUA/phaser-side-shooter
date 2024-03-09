@@ -3,6 +3,7 @@ import * as Phaser from "phaser";
 import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
 import { Dragon } from "../prefabs/Dragon";
+import { Enemy } from "../prefabs/Enemy";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
@@ -26,6 +27,7 @@ export class GameScene extends Phaser.Scene {
 
     this.createBackground();
     this.createDragon();
+    this.createEnemy();
   }
 
   update(_time: number, _delta: number): void {
@@ -61,6 +63,14 @@ export class GameScene extends Phaser.Scene {
       this,
       +this.game.config.width * 0.1,
       +this.game.config.height / 2
+    );
+  }
+
+  createEnemy(): void {
+    new Enemy(
+      this,
+      +this.game.config.width * 0.9,
+      +this.game.config.height * 0.1
     );
   }
 }
