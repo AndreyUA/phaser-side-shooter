@@ -7,6 +7,7 @@ import { Enemy } from "../prefabs/Enemy";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
+  enemy: Enemy | null = null;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys | null = null;
   backgroundTileSprite: Phaser.GameObjects.TileSprite | null = null;
 
@@ -32,6 +33,7 @@ export class GameScene extends Phaser.Scene {
 
   update(_time: number, _delta: number): void {
     this.dragon?.onMove();
+    this.enemy?.onMove();
 
     if (this.backgroundTileSprite) {
       this.backgroundTileSprite.tilePositionX += 0.6;
@@ -67,7 +69,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   createEnemy(): void {
-    new Enemy(
+    this.enemy = new Enemy(
       this,
       +this.game.config.width * 0.9,
       +this.game.config.height * 0.1

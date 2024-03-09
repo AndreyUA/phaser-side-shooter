@@ -6,6 +6,7 @@ import { GameScene } from "../scenes/GameScene";
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   scene: GameScene;
+  private readonly velocity: number = -250;
 
   constructor(scene: GameScene, x: number, y: number) {
     super(scene, x, y, AssetKeys.ENEMY_ATLAS, EnemyFrames.ENEMY_1);
@@ -15,5 +16,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     if (this.body) {
       this.body.enable = true;
     }
+  }
+
+  onMove(): void {
+    this.setVelocityX(this.velocity);
   }
 }
