@@ -4,10 +4,11 @@ import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
 import { Dragon } from "../prefabs/Dragon";
 import { Enemy } from "../prefabs/Enemy";
+import { Enemies } from "../prefabs/Enemies";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
-  enemyGroup: Phaser.Physics.Arcade.Group | null = null;
+  enemyGroup: Enemies | null = null;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys | null = null;
   backgroundTileSprite: Phaser.GameObjects.TileSprite | null = null;
 
@@ -28,7 +29,7 @@ export class GameScene extends Phaser.Scene {
 
     this.createBackground();
     this.createDragon();
-    this.createEnemy();
+    this.createEnemiesGroup();
   }
 
   update(_time: number, _delta: number): void {
@@ -72,11 +73,7 @@ export class GameScene extends Phaser.Scene {
     );
   }
 
-  createEnemy(): void {
-    this.enemyGroup = this.physics.add.group();
-
-    this.enemyGroup.add(Enemy.generateEnemy(this));
-    this.enemyGroup.add(Enemy.generateEnemy(this));
-    this.enemyGroup.add(Enemy.generateEnemy(this));
+  createEnemiesGroup(): void {
+    this.enemyGroup = new Enemies(this);
   }
 }
