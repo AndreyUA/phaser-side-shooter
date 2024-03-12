@@ -3,7 +3,6 @@ import * as Phaser from "phaser";
 import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
 import { Dragon } from "../prefabs/Dragon";
-import { Enemy } from "../prefabs/Enemy";
 import { Enemies } from "../prefabs/Enemies";
 
 export class GameScene extends Phaser.Scene {
@@ -34,11 +33,6 @@ export class GameScene extends Phaser.Scene {
 
   update(_time: number, _delta: number): void {
     this.dragon?.onMove();
-
-    const firstEnemy = this.enemyGroup?.getChildren()[0] as Enemy;
-    if (firstEnemy && this.enemyGroup) {
-      this.enemyGroup.setVelocityX(firstEnemy.velocity);
-    }
 
     if (this.backgroundTileSprite) {
       this.backgroundTileSprite.tilePositionX += 0.6;

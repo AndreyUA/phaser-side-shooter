@@ -4,7 +4,8 @@ import { GameScene } from "../scenes/GameScene";
 import { Enemy } from "./Enemy";
 
 export class Enemies extends Phaser.Physics.Arcade.Group {
-  readonly count: number = 10;
+  readonly count: number = 5;
+  countCreated: number = 0;
   scene: GameScene;
   timer: Phaser.Time.TimerEvent | null = null;
 
@@ -16,13 +17,29 @@ export class Enemies extends Phaser.Physics.Arcade.Group {
   }
 
   createEnemy(): void {
-    if (this.getLength() >= this.count) {
+    if (this.countCreated >= this.count) {
       this.timer?.remove();
 
       return;
     }
 
-    this.add(Enemy.generateEnemy(this.scene));
+    const enemy = this.getFirstDead() as Enemy | null;
+
+    if (!enemy) {
+      this.add(Enemy.generateEnemy(this.scene));
+    } else {
+      enemy.reset();
+    }
+
+    this.moveEnemies();
+    this.countCreated++;
+  }
+
+  moveEnemies(): void {
+    const firstEnemy = this.getChildren()[0] as Enemy;
+    if (firstEnemy) {
+      this.setVelocityX(firstEnemy.velocity);
+    }
   }
 
   initEnemiesTimer(): void {
