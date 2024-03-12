@@ -17,6 +17,23 @@ export class Enemy extends AbstractPrefab {
       Enemy.randomEnemyFrame(),
       ENEMY_VELOCITY
     );
+
+    this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
+  }
+
+  setAlive(isAlive: boolean): void {
+    // Activate or deactivate the body
+    this.body!.enable = isAlive;
+    // Show or hide the texture
+    this.setVisible(isAlive);
+    // Activate or deactivate the object
+    this.setActive(isAlive);
+  }
+
+  update(): void {
+    if (this.active && this.x < -this.width) {
+      this.setAlive(false);
+    }
   }
 
   static generateEnemy(scene: GameScene): Enemy {
