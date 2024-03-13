@@ -7,12 +7,14 @@ import { Dragon } from "./Dragon";
 export class Fires extends Phaser.Physics.Arcade.Group {
   scene: GameScene;
   dragon: Dragon | null = null;
+  timer: Phaser.Time.TimerEvent | null = null;
 
   constructor(scene: GameScene, dragon: Dragon) {
     super(scene.physics.world, scene);
 
     this.scene = scene;
     this.dragon = dragon;
+    this.initFiresTimer();
   }
 
   createFire(): void {
@@ -32,5 +34,16 @@ export class Fires extends Phaser.Physics.Arcade.Group {
     if (firstFire) {
       this.setVelocityX(firstFire.velocity);
     }
+  }
+
+  initFiresTimer(): void {
+    this.createFire();
+
+    this.timer = this.scene.time.addEvent({
+      delay: 500,
+      callback: this.createFire,
+      callbackScope: this,
+      loop: true,
+    });
   }
 }

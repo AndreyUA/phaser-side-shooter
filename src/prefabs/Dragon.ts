@@ -27,11 +27,6 @@ export class Dragon extends AbstractPrefab {
 
     this.setVelocity(0);
 
-    this.scene?.cursors?.space?.once(
-      "down",
-      this.fires!.createFire.bind(this.fires)
-    );
-
     if (this.scene?.cursors?.left?.isDown) {
       this.setVelocityX(-this.velocity);
     }
