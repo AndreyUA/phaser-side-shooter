@@ -2,6 +2,7 @@ import { AssetKeys } from "../constants/assets";
 import { DragonFrames } from "../constants/dragonFrames";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
+import { Fire } from "./Fire";
 
 const DRAGON_VELOCITY = 500;
 
@@ -12,9 +13,11 @@ export class Dragon extends AbstractPrefab {
       x,
       y,
       AssetKeys.DRAGON_ATLAS,
-      DragonFrames.DRAGON_1,
-      DRAGON_VELOCITY
+      DRAGON_VELOCITY,
+      DragonFrames.DRAGON_1
     );
+
+    const fire = Fire.generateFire(this.scene, this);
   }
 
   onMove(): void {

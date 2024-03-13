@@ -14,8 +14,8 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
     x: number,
     y: number,
     atlasKey: AssetKeys,
-    frameKey: EnemyFrames | DragonFrames,
-    velocity: number
+    velocity?: number,
+    frameKey?: EnemyFrames | DragonFrames
   ) {
     super(scene, x, y, atlasKey, frameKey);
     this.scene = scene;
@@ -24,7 +24,7 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
     if (this.body) {
       this.body.enable = true;
     }
-    this.velocity = velocity;
+    this.velocity = velocity ?? 0;
   }
 
   onMove(): void {}

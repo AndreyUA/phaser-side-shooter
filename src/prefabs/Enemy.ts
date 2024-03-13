@@ -14,8 +14,8 @@ export class Enemy extends AbstractPrefab {
       x,
       y,
       AssetKeys.ENEMY_ATLAS,
-      Enemy.randomEnemyFrame(),
-      ENEMY_VELOCITY
+      ENEMY_VELOCITY,
+      Enemy.randomEnemyFrame()
     );
 
     this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
