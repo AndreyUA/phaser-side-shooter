@@ -2,11 +2,13 @@ import { AssetKeys } from "../constants/assets";
 import { DragonFrames } from "../constants/dragonFrames";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
-import { Fire } from "./Fire";
+import { Fires } from "./Fires";
 
 const DRAGON_VELOCITY = 500;
 
 export class Dragon extends AbstractPrefab {
+  fires: Fires | null = null;
+
   constructor(scene: GameScene, x: number, y: number) {
     super(
       scene,
@@ -17,13 +19,18 @@ export class Dragon extends AbstractPrefab {
       DragonFrames.DRAGON_1
     );
 
-    const fire = Fire.generateFire(this.scene, this);
+    this.generateFires();
   }
 
   onMove(): void {
     super.onMove();
 
     this.setVelocity(0);
+
+    this.scene?.cursors?.space?.once(
+      "down",
+      this.fires!.createFire.bind(this.fires)
+    );
 
     if (this.scene?.cursors?.left?.isDown) {
       this.setVelocityX(-this.velocity);
@@ -40,5 +47,9 @@ export class Dragon extends AbstractPrefab {
     if (this.scene?.cursors?.down?.isDown) {
       this.setVelocityY(this.velocity);
     }
+  }
+
+  generateFires(): void {
+    this.fires = new Fires(this.scene, this);
   }
 }
