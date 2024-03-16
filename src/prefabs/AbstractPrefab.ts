@@ -28,4 +28,13 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
   }
 
   onMove(): void {}
+
+  setAlive(isAlive: boolean): void {
+    // Activate or deactivate the body
+    this.body!.enable = isAlive;
+    // Show or hide the texture
+    this.setVisible(isAlive);
+    // Activate or deactivate the object
+    this.setActive(isAlive);
+  }
 }

@@ -21,15 +21,6 @@ export class Enemy extends AbstractPrefab {
     this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
   }
 
-  setAlive(isAlive: boolean): void {
-    // Activate or deactivate the body
-    this.body!.enable = isAlive;
-    // Show or hide the texture
-    this.setVisible(isAlive);
-    // Activate or deactivate the object
-    this.setActive(isAlive);
-  }
-
   reset(): void {
     const { x, y } = Enemy.calculateXAndY(this.scene);
 
