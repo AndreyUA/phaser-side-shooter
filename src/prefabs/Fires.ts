@@ -23,7 +23,7 @@ export class Fires extends Phaser.Physics.Arcade.Group {
     if (!fire) {
       this.add(Fire.generateFire(this.scene, this.dragon!));
     } else {
-      fire.reset();
+      fire.reset(this.dragon!);
     }
 
     this.moveFires();
