@@ -17,7 +17,7 @@ export class Enemy extends AbstractPrefab {
       Enemy.randomEnemyFrame()
     );
 
-    this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
+    super.subscribeOnUpdates();
   }
 
   reset(): void {
@@ -27,13 +27,11 @@ export class Enemy extends AbstractPrefab {
     this.y = y;
 
     this.setFrame(Enemy.randomEnemyFrame());
-    this.setAlive(true);
+    super.reset();
   }
 
   update(): void {
-    if (this.active && this.isOverLeftScreenSide) {
-      this.setAlive(false);
-    }
+    super.update(this.isOverLeftScreenSide);
   }
 
   static calculateXAndY(scene: GameScene): { x: number; y: number } {

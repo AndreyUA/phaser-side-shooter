@@ -4,6 +4,8 @@ import { AssetKeys } from "../constants/assets";
 import { EnemyFrames } from "../constants/enemyFrames";
 import { GameScene } from "../scenes/GameScene";
 import { DragonFrames } from "../constants/dragonFrames";
+import { Dragon } from "./Dragon";
+import { Enemy } from "./Enemy";
 
 export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
   scene: GameScene;
@@ -29,6 +31,10 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
 
   onMove(): void {}
 
+  reset(_dragon?: Dragon | Enemy): void {
+    this.setAlive(true);
+  }
+
   setAlive(isAlive: boolean): void {
     // Activate or deactivate the body
     this.body!.enable = isAlive;
@@ -36,6 +42,16 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(isAlive);
     // Activate or deactivate the object
     this.setActive(isAlive);
+  }
+
+  subscribeOnUpdates(): void {
+    this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
+  }
+
+  update(isTimeForUpdate: boolean): void {
+    if (this.active && isTimeForUpdate) {
+      this.setAlive(false);
+    }
   }
 
   get isOverLeftScreenSide(): boolean {
