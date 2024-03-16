@@ -32,7 +32,7 @@ export class Enemy extends AbstractPrefab {
   }
 
   update(): void {
-    if (this.active && this.x < -this.width) {
+    if (this.active && this.isOverLeftScreenSide) {
       this.setAlive(false);
     }
   }

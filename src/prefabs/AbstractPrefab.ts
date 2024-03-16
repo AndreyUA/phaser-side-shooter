@@ -37,4 +37,12 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
     // Activate or deactivate the object
     this.setActive(isAlive);
   }
+
+  get isOverLeftScreenSide(): boolean {
+    return this.x < -this.width;
+  }
+
+  get isOverRightScreenSide(): boolean {
+    return this.x > this.scene.scale.width;
+  }
 }
