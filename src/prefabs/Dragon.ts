@@ -1,10 +1,9 @@
 import { AssetKeys } from "../constants/assets";
 import { DragonFrames } from "../constants/dragonFrames";
+import { DRAGON_VELOCITY } from "../constants/dragonVelocity";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
 import { Fires } from "./Fires";
-
-const DRAGON_VELOCITY = 500;
 
 export class Dragon extends AbstractPrefab {
   fires: Fires | null = null;

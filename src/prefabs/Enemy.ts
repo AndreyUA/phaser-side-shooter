@@ -4,8 +4,7 @@ import { AssetKeys } from "../constants/assets";
 import { EnemyFrames } from "../constants/enemyFrames";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
-
-const ENEMY_VELOCITY = -250;
+import { ENEMY_VELOCITY } from "../constants/enemyVelocity";
 
 export class Enemy extends AbstractPrefab {
   constructor(scene: GameScene, x: number, y: number) {

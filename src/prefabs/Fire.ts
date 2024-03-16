@@ -1,10 +1,9 @@
 import { AssetKeys } from "../constants/assets";
+import { FIRE_VELOCITY } from "../constants/fireVelocity";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
 import { Dragon } from "./Dragon";
 import { Enemy } from "./Enemy";
-
-const FIRE_VELOCITY = 500;
 
 export class Fire extends AbstractPrefab {
   constructor(scene: GameScene, x: number, y: number) {
