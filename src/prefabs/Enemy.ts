@@ -5,8 +5,11 @@ import { EnemyFrames } from "../constants/enemyFrames";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
 import { ENEMY_VELOCITY } from "../constants/enemyVelocity";
+import { Bullets } from "./Bullets";
 
 export class Enemy extends AbstractPrefab {
+  bullets: Bullets | null = null;
+
   constructor(scene: GameScene, x: number, y: number) {
     super(
       scene,
@@ -18,6 +21,11 @@ export class Enemy extends AbstractPrefab {
     );
 
     super.subscribeOnUpdates();
+    this.generateFires();
+  }
+
+  generateFires(): void {
+    this.bullets = new Bullets(this.scene, this);
   }
 
   reset(): void {
