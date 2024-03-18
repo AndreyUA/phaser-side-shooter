@@ -1,1 +1,1 @@
-export const FIRE_VELOCITY = 500;
+export const FIRE_VELOCITY = 750;
