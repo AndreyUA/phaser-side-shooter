@@ -3,7 +3,6 @@ import { FIRE_VELOCITY } from "../constants/fireVelocity";
 import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
 import { Dragon } from "./Dragon";
-import { Enemy } from "./Enemy";
 
 export class Fire extends AbstractPrefab {
   constructor(scene: GameScene, x: number, y: number) {
@@ -12,7 +11,7 @@ export class Fire extends AbstractPrefab {
     super.subscribeOnUpdates();
   }
 
-  reset(dragon: Dragon | Enemy): void {
+  reset(dragon: Dragon): void {
     this.x = dragon.x + dragon.width / 2;
     this.y = dragon.y;
 
