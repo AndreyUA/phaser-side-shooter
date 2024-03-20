@@ -38,6 +38,16 @@ export class Enemy extends AbstractPrefab {
     super.reset();
   }
 
+  setAlive(isAlive: boolean): void {
+    super.setAlive(isAlive);
+
+    if (!this.bullets?.timer) {
+      return;
+    }
+
+    this.bullets.timer.paused = !isAlive;
+  }
+
   update(): void {
     super.update(this.isOverLeftScreenSide);
   }

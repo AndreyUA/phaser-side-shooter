@@ -4,6 +4,8 @@ import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
 import { Dragon } from "../prefabs/Dragon";
 import { Enemies } from "../prefabs/Enemies";
+import { Fire } from "../prefabs/Fire";
+import { Enemy } from "../prefabs/Enemy";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
@@ -29,6 +31,7 @@ export class GameScene extends Phaser.Scene {
     this.createBackground();
     this.createDragon();
     this.createEnemiesGroup();
+    this.addOverlap();
   }
 
   update(_time: number, _delta: number): void {
@@ -37,6 +40,20 @@ export class GameScene extends Phaser.Scene {
     if (this.backgroundTileSprite) {
       this.backgroundTileSprite.tilePositionX += 0.6;
     }
+  }
+
+  addOverlap(): void {
+    if (!this.dragon?.fires || !this.enemyGroup) {
+      return;
+    }
+
+    this.physics.add.overlap(
+      this.dragon.fires,
+      this.enemyGroup,
+      this.onOverlap,
+      undefined,
+      this
+    );
   }
 
   createBackground(): void {
@@ -69,5 +86,26 @@ export class GameScene extends Phaser.Scene {
 
   createEnemiesGroup(): void {
     this.enemyGroup = new Enemies(this);
+  }
+
+  onOverlap(
+    source:
+      | Phaser.Tilemaps.Tile
+      | Phaser.Types.Physics.Arcade.GameObjectWithBody,
+    target:
+      | Phaser.Tilemaps.Tile
+      | Phaser.Types.Physics.Arcade.GameObjectWithBody
+  ): void {
+    console.log("!!!");
+
+    if (
+      source instanceof Fire &&
+      target instanceof Enemy &&
+      source.active &&
+      target.active
+    ) {
+      source.setAlive(false);
+      target.setAlive(false);
+    }
   }
 }
