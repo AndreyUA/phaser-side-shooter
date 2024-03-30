@@ -54,6 +54,14 @@ export class GameScene extends Phaser.Scene {
       undefined,
       this
     );
+
+    this.physics.add.overlap(
+      this.dragon,
+      this.enemyGroup,
+      this.onOverlap,
+      undefined,
+      this
+    );
   }
 
   createBackground(): void {
@@ -97,7 +105,7 @@ export class GameScene extends Phaser.Scene {
       | Phaser.Types.Physics.Arcade.GameObjectWithBody
   ): void {
     if (
-      source instanceof Fire &&
+      (source instanceof Fire || source instanceof Dragon) &&
       target instanceof Enemy &&
       source.active &&
       target.active
