@@ -2,6 +2,8 @@ import * as Phaser from "phaser";
 
 import { GameScene } from "../scenes/GameScene";
 import { Enemy } from "./Enemy";
+import { Dragon } from "./Dragon";
+import { Bullet } from "./Bullet";
 
 export class Enemies extends Phaser.Physics.Arcade.Group {
   readonly count: number = 5;
@@ -26,13 +28,42 @@ export class Enemies extends Phaser.Physics.Arcade.Group {
     const enemy = this.getFirstDead() as Enemy | null;
 
     if (!enemy) {
-      this.add(Enemy.generateEnemy(this.scene));
+      const newEnemy = Enemy.generateEnemy(this.scene);
+
+      this.add(newEnemy);
+
+      this.scene.physics.add.overlap(
+        this.scene.dragon!,
+        newEnemy.bullets!,
+        this.onOverlap,
+        undefined,
+        this
+      );
     } else {
       enemy.reset();
     }
 
     this.moveEnemies();
     this.countCreated++;
+  }
+
+  onOverlap(
+    source:
+      | Phaser.Tilemaps.Tile
+      | Phaser.Types.Physics.Arcade.GameObjectWithBody,
+    target:
+      | Phaser.Tilemaps.Tile
+      | Phaser.Types.Physics.Arcade.GameObjectWithBody
+  ): void {
+    if (
+      source instanceof Dragon &&
+      target instanceof Bullet &&
+      source.active &&
+      target.active
+    ) {
+      source.setAlive(false);
+      target.setAlive(false);
+    }
   }
 
   moveEnemies(): void {

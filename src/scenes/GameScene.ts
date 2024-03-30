@@ -96,8 +96,6 @@ export class GameScene extends Phaser.Scene {
       | Phaser.Tilemaps.Tile
       | Phaser.Types.Physics.Arcade.GameObjectWithBody
   ): void {
-    console.log("!!!");
-
     if (
       source instanceof Fire &&
       target instanceof Enemy &&

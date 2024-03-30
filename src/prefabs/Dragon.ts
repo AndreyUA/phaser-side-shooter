@@ -46,4 +46,14 @@ export class Dragon extends AbstractPrefab {
   generateFires(): void {
     this.fires = new Fires(this.scene, this);
   }
+
+  setAlive(isAlive: boolean): void {
+    super.setAlive(isAlive);
+
+    if (!this.fires?.timer) {
+      return;
+    }
+
+    this.fires.timer.paused = !isAlive;
+  }
 }
