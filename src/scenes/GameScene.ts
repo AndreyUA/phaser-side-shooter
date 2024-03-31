@@ -7,6 +7,7 @@ import { Enemies } from "../prefabs/Enemies";
 import { Fire } from "../prefabs/Fire";
 import { Enemy } from "../prefabs/Enemy";
 import { DRAGON_KILLED, ENEMIES_KILLED } from "../constants/customEvents";
+import { defaultTextStyle } from "../constants/defaultTextStyle";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
@@ -148,12 +149,7 @@ export class GameScene extends Phaser.Scene {
 
   createTapText(): void {
     this.scoreText = this.add
-      .text(50, 50, this.createScoreText(), {
-        fontSize: "40px",
-        // TODO: Add custom font
-        // fontFamily: "CurseCasual",
-        color: "#fff",
-      })
+      .text(50, 50, this.createScoreText(), defaultTextStyle)
       .setDepth(3);
   }
 
