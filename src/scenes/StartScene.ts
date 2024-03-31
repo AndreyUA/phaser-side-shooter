@@ -46,14 +46,15 @@ export class StartScene extends Phaser.Scene {
       completed = data.completed;
     }
 
-    const graphics: Phaser.GameObjects.Graphics = this.add.graphics();
-    graphics.fillStyle(0x000000, 0.5);
-    graphics.fillRoundedRect(
-      this.scene.scene.scale.width / 2 - 200,
-      this.scene.scene.scale.height / 2 - 200,
-      400,
-      400
-    );
+    this.add
+      .graphics()
+      .fillStyle(0x000000, 0.5)
+      .fillRoundedRect(
+        this.scene.scene.scale.width / 2 - 200,
+        this.scene.scene.scale.height / 2 - 200,
+        400,
+        400
+      );
 
     const statsTitle = completed ? "You won!" : "You lost!";
     const statsSubtitle: string = `Score: ${score}`;
