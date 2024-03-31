@@ -6,7 +6,7 @@ import { Dragon } from "../prefabs/Dragon";
 import { Enemies } from "../prefabs/Enemies";
 import { Fire } from "../prefabs/Fire";
 import { Enemy } from "../prefabs/Enemy";
-import { KILLED_EVENT } from "../constants/customEvents";
+import { DRAGON_KILLED, ENEMIES_KILLED } from "../constants/customEvents";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
@@ -41,6 +41,13 @@ export class GameScene extends Phaser.Scene {
 
     if (this.backgroundTileSprite) {
       this.backgroundTileSprite.tilePositionX += 0.6;
+    }
+
+    if (
+      this.enemyGroup?.countCreated === this.enemyGroup?.count &&
+      this.enemyGroup?.getTotalUsed() === 0
+    ) {
+      this.enemyGroup.emit(ENEMIES_KILLED);
     }
   }
 
@@ -79,7 +86,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   createCompleteEvents(): void {
-    this.dragon?.once(KILLED_EVENT, this.onComplete, this);
+    this.dragon?.once(DRAGON_KILLED, this.onComplete, this);
+    this.enemyGroup?.once(ENEMIES_KILLED, this.onComplete, this);
   }
 
   createCursorKeys(): void {

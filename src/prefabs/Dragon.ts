@@ -1,5 +1,5 @@
 import { AssetKeys } from "../constants/assets";
-import { KILLED_EVENT } from "../constants/customEvents";
+import { DRAGON_KILLED } from "../constants/customEvents";
 import { DragonFrames } from "../constants/dragonFrames";
 import { DRAGON_VELOCITY } from "../constants/dragonVelocity";
 import { GameScene } from "../scenes/GameScene";
@@ -58,7 +58,7 @@ export class Dragon extends AbstractPrefab {
     this.fires.timer.paused = !isAlive;
 
     if (!isAlive) {
-      this.emit(KILLED_EVENT);
+      this.emit(DRAGON_KILLED);
     }
   }
 }

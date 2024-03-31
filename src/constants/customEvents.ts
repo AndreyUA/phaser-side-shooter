@@ -1,1 +1,3 @@
-export const KILLED_EVENT = "KILLED_EVENT";
+export const DRAGON_KILLED = "DRAGON_KILLED";
+
+export const ENEMIES_KILLED = "ENEMIES_KILLED";
