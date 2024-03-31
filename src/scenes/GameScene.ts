@@ -115,7 +115,11 @@ export class GameScene extends Phaser.Scene {
 
   onComplete(): void {
     console.log("GAME OVER.");
-    this.scene.start(SceneKeys.START);
+
+    this.scene.start(SceneKeys.START, {
+      score: this.score,
+      completed: this.dragon?.active,
+    });
   }
 
   onOverlap(

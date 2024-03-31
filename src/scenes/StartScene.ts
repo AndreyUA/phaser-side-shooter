@@ -4,6 +4,9 @@ import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
 
 export class StartScene extends Phaser.Scene {
+  private score: number | null = null;
+  private completed: boolean | null = null;
+
   constructor() {
     super({ key: SceneKeys.START, active: false });
   }
@@ -14,12 +17,33 @@ export class StartScene extends Phaser.Scene {
 
   preload(): void {}
 
-  create(): void {
+  create(data: unknown): void {
     console.log("Start scene was created!");
 
     this.createBackground();
     this.createTapText();
     this.createTapListener();
+
+    if (
+      data &&
+      typeof data === "object" &&
+      "score" in data &&
+      typeof data.score === "number"
+    ) {
+      this.score = data.score;
+    }
+
+    if (
+      data &&
+      typeof data === "object" &&
+      "completed" in data &&
+      typeof data.completed === "boolean"
+    ) {
+      this.completed = data.completed;
+    }
+
+    console.log("🚀 ~ StartScene ~ init ~ this.score:", this.score);
+    console.log("🚀 ~ StartScene ~ init ~ this.completed:", this.completed);
   }
 
   update(_time: number, _delta: number): void {}
