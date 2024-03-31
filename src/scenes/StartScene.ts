@@ -48,7 +48,7 @@ export class StartScene extends Phaser.Scene {
 
     const graphics: Phaser.GameObjects.Graphics = this.add.graphics();
     graphics.fillStyle(0x000000, 0.5);
-    graphics.fillRect(
+    graphics.fillRoundedRect(
       this.scene.scene.scale.width / 2 - 200,
       this.scene.scene.scale.height / 2 - 200,
       400,
