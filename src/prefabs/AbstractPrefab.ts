@@ -59,6 +59,6 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
   }
 
   get isOverRightScreenSide(): boolean {
-    return this.x > this.scene.scale.width;
+    return this.x > this.scene?.scale.width;
   }
 }

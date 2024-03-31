@@ -6,6 +6,7 @@ import { Dragon } from "../prefabs/Dragon";
 import { Enemies } from "../prefabs/Enemies";
 import { Fire } from "../prefabs/Fire";
 import { Enemy } from "../prefabs/Enemy";
+import { KILLED_EVENT } from "../constants/customEvents";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
@@ -31,6 +32,7 @@ export class GameScene extends Phaser.Scene {
     this.createBackground();
     this.createDragon();
     this.createEnemiesGroup();
+    this.createCompleteEvents();
     this.addOverlap();
   }
 
@@ -76,6 +78,10 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(0, 0);
   }
 
+  createCompleteEvents(): void {
+    this.dragon?.once(KILLED_EVENT, this.onComplete, this);
+  }
+
   createCursorKeys(): void {
     if (!this.input.keyboard) {
       return;
@@ -94,6 +100,11 @@ export class GameScene extends Phaser.Scene {
 
   createEnemiesGroup(): void {
     this.enemyGroup = new Enemies(this);
+  }
+
+  onComplete(): void {
+    console.log("GAME OVER.");
+    this.scene.start(SceneKeys.START);
   }
 
   onOverlap(
