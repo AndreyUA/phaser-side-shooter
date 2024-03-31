@@ -13,6 +13,8 @@ export class GameScene extends Phaser.Scene {
   enemyGroup: Enemies | null = null;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys | null = null;
   backgroundTileSprite: Phaser.GameObjects.TileSprite | null = null;
+  score: number = 0;
+  scoreText: Phaser.GameObjects.Text | null = null;
 
   constructor() {
     super({ key: SceneKeys.GAME, active: false });
@@ -34,6 +36,7 @@ export class GameScene extends Phaser.Scene {
     this.createEnemiesGroup();
     this.createCompleteEvents();
     this.addOverlap();
+    this.createTapText();
   }
 
   update(_time: number, _delta: number): void {
@@ -132,5 +135,25 @@ export class GameScene extends Phaser.Scene {
       source.setAlive(false);
       target.setAlive(false);
     }
+
+    if (source instanceof Fire && target instanceof Enemy) {
+      this.score++;
+      this.scoreText?.setText(this.createScoreText());
+    }
+  }
+
+  createTapText(): void {
+    this.scoreText = this.add
+      .text(50, 50, this.createScoreText(), {
+        fontSize: "40px",
+        // TODO: Add custom font
+        // fontFamily: "CurseCasual",
+        color: "#fff",
+      })
+      .setDepth(3);
+  }
+
+  private createScoreText(): string {
+    return `Score: ${this.score}`;
   }
 }
