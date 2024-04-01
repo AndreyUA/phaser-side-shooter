@@ -18,6 +18,8 @@ export class PreloadScene extends Phaser.Scene {
     this.load.atlas(AssetKeys.BOOM, "./boom.png", "./boom.json");
     this.load.image(AssetKeys.FIRE, "./fire.png");
     this.load.image(AssetKeys.BULLET, "./bullet.png");
+    this.load.audio(AssetKeys.BOOM_SOUND, "./boom.mp3");
+    this.load.audio(AssetKeys.THEME_SOUND, "./theme.mp3");
   }
 
   create(): void {

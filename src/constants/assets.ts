@@ -5,4 +5,6 @@ export enum AssetKeys {
   FIRE = "FIRE",
   BULLET = "BULLET",
   BOOM = "BOOM",
+  BOOM_SOUND = "BOOM_SOUND",
+  THEME_SOUND = "THEME_SOUND",
 }
