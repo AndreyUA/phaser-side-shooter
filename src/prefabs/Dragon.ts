@@ -6,6 +6,9 @@ import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
 import { Fires } from "./Fires";
 
+const DRAGON_WIDTH = 153;
+const DRAGON_HEIGHT = 119;
+
 export class Dragon extends AbstractPrefab {
   fires: Fires | null = null;
 
@@ -28,19 +31,25 @@ export class Dragon extends AbstractPrefab {
 
     this.setVelocity(0);
 
-    if (this.scene?.cursors?.left?.isDown) {
+    if (this.scene?.cursors?.left?.isDown && this.x > DRAGON_WIDTH / 2) {
       this.setVelocityX(-this.velocity);
     }
 
-    if (this.scene?.cursors?.right?.isDown) {
+    if (
+      this.scene?.cursors?.right?.isDown &&
+      this.x < +this.scene.game.config.width - DRAGON_WIDTH / 2
+    ) {
       this.setVelocityX(this.velocity);
     }
 
-    if (this.scene?.cursors?.up?.isDown) {
+    if (this.scene?.cursors?.up?.isDown && this.y > DRAGON_HEIGHT / 2) {
       this.setVelocityY(-this.velocity);
     }
 
-    if (this.scene?.cursors?.down?.isDown) {
+    if (
+      this.scene?.cursors?.down?.isDown &&
+      this.y < +this.scene.game.config.height - DRAGON_HEIGHT / 2
+    ) {
       this.setVelocityY(this.velocity);
     }
   }
