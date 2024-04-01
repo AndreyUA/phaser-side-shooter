@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 
 import { SceneKeys } from "../constants/scenes";
 import { AssetKeys } from "../constants/assets";
+import { LoadingBar } from "../helpers/LoadingBar";
 
 export class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -13,6 +14,12 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload(): void {
+    this.createBackground();
+    new LoadingBar(this);
+    this.preloadAssets();
+  }
+
+  preloadAssets(): void {
     this.load.atlas(AssetKeys.DRAGON_ATLAS, "./dragon.png", "./dragon.json");
     this.load.atlas(AssetKeys.ENEMY_ATLAS, "./enemy.png", "./enemy.json");
     this.load.atlas(AssetKeys.BOOM, "./boom.png", "./boom.json");
@@ -29,4 +36,8 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   update(_time: number, _delta: number): void {}
+
+  createBackground(): void {
+    this.add.sprite(0, 0, AssetKeys.MAIN_SCENE_BACKGROUND).setOrigin(0, 0);
+  }
 }
