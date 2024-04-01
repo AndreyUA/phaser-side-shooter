@@ -8,6 +8,10 @@ export class Boom extends AbstractPrefab {
     super(scene, x, y, AssetKeys.BOOM, 0, BoomFrames.BOOM_1);
 
     this.generateAtlasAnimation();
+
+    this.once("animationcomplete", () => {
+      this.destroy();
+    });
   }
 
   generateAtlasAnimation(): void {
