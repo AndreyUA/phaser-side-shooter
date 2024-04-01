@@ -20,6 +20,7 @@ export class Dragon extends AbstractPrefab {
     );
 
     this.generateFires();
+    this.generateAtlasAnimation();
   }
 
   onMove(): void {
@@ -42,6 +43,24 @@ export class Dragon extends AbstractPrefab {
     if (this.scene?.cursors?.down?.isDown) {
       this.setVelocityY(this.velocity);
     }
+  }
+
+  generateAtlasAnimation(): void {
+    const frames = this.scene.anims.generateFrameNames(AssetKeys.DRAGON_ATLAS, {
+      prefix: "dragon",
+      start: 1,
+      end: 6,
+    });
+
+    this.scene.anims.create({
+      key: DragonFrames.DRAGON_ANIMATION,
+      frames,
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    // this.scene.anims.play(DragonFrames.DRAGON_ANIMATION, this);
+    this.play(DragonFrames.DRAGON_ANIMATION);
   }
 
   generateFires(): void {
