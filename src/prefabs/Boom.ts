@@ -18,7 +18,7 @@ export class Boom extends AbstractPrefab {
     const frames = this.scene.anims.generateFrameNames(AssetKeys.BOOM, {
       prefix: "boom",
       start: 1,
-      end: 6,
+      end: 4,
     });
 
     this.scene.anims.create({
