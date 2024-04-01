@@ -39,6 +39,7 @@ export class GameScene extends Phaser.Scene {
     this.createCompleteEvents();
     this.addOverlap();
     this.createTapText();
+    this.createSoundThemes();
   }
 
   update(_time: number, _delta: number): void {
@@ -115,9 +116,17 @@ export class GameScene extends Phaser.Scene {
     this.enemyGroup = new Enemies(this);
   }
 
+  createSoundThemes(): void {
+    this.sound.play(AssetKeys.THEME_SOUND, {
+      loop: true,
+      volume: 0.2,
+    });
+  }
+
   onComplete(): void {
     console.log("GAME OVER.");
 
+    this.sound.stopByKey(AssetKeys.THEME_SOUND);
     this.scene.start(SceneKeys.START, {
       score: this.score,
       completed: this.dragon?.active,
@@ -149,6 +158,10 @@ export class GameScene extends Phaser.Scene {
 
     if (target instanceof Enemy) {
       new Boom(this, target.x, target.y);
+      this.sound.play(AssetKeys.BOOM_SOUND, {
+        loop: false,
+        volume: 0.1,
+      });
     }
   }
 
