@@ -25,7 +25,7 @@ export class Boom extends AbstractPrefab {
       key: BoomFrames.BOOM_ANIMATION,
       frames,
       frameRate: 10,
-      repeat: 1,
+      repeat: 0,
     });
 
     this.play(BoomFrames.BOOM_ANIMATION);
