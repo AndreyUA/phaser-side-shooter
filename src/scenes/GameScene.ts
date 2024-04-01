@@ -145,6 +145,9 @@ export class GameScene extends Phaser.Scene {
     if (source instanceof Fire && target instanceof Enemy) {
       this.score++;
       this.scoreText?.setText(this.createScoreText());
+    }
+
+    if (target instanceof Enemy) {
       new Boom(this, target.x, target.y);
     }
   }
