@@ -1,3 +1,5 @@
+import * as Phaser from "phaser";
+
 import { AssetKeys } from "../constants/assets";
 import { BoomFrames } from "../constants/boomFrames";
 import { GameScene } from "../scenes/GameScene";
@@ -9,7 +11,7 @@ export class Boom extends AbstractPrefab {
 
     this.generateAtlasAnimation();
 
-    this.once("animationcomplete", () => {
+    this.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
       this.destroy();
     });
   }
