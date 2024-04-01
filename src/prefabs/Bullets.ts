@@ -40,7 +40,7 @@ export class Bullets extends Phaser.Physics.Arcade.Group {
     this.createFire();
 
     this.timer = this.scene.time.addEvent({
-      delay: 1_000,
+      delay: 1_300,
       callback: this.createFire,
       callbackScope: this,
       loop: true,
