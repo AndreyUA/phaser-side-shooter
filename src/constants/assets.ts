@@ -4,4 +4,5 @@ export enum AssetKeys {
   ENEMY_ATLAS = "ENEMY_ATLAS",
   FIRE = "FIRE",
   BULLET = "BULLET",
+  BOOM = "BOOM",
 }
