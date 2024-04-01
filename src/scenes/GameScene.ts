@@ -8,6 +8,7 @@ import { Fire } from "../prefabs/Fire";
 import { Enemy } from "../prefabs/Enemy";
 import { DRAGON_KILLED, ENEMIES_KILLED } from "../constants/customEvents";
 import { defaultTextStyle } from "../constants/defaultTextStyle";
+import { Boom } from "../prefabs/Boom";
 
 export class GameScene extends Phaser.Scene {
   dragon: Dragon | null = null;
@@ -144,6 +145,7 @@ export class GameScene extends Phaser.Scene {
     if (source instanceof Fire && target instanceof Enemy) {
       this.score++;
       this.scoreText?.setText(this.createScoreText());
+      new Boom(this, target.x, target.y);
     }
   }
 

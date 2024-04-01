@@ -6,7 +6,6 @@ import { GameScene } from "../scenes/GameScene";
 import { AbstractPrefab } from "./AbstractPrefab";
 import { ENEMY_VELOCITY } from "../constants/enemyVelocity";
 import { Bullets } from "./Bullets";
-import { Boom } from "./Boom";
 
 export class Enemy extends AbstractPrefab {
   bullets: Bullets | null = null;
@@ -40,10 +39,6 @@ export class Enemy extends AbstractPrefab {
   }
 
   setAlive(isAlive: boolean): void {
-    if (!isAlive) {
-      new Boom(this.scene, this.x, this.y);
-    }
-
     super.setAlive(isAlive);
 
     if (!this.bullets?.timer) {
