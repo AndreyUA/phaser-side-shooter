@@ -6,6 +6,7 @@ import { GameScene } from "../scenes/GameScene";
 import { DragonFrames } from "../constants/dragonFrames";
 import { Dragon } from "./Dragon";
 import { Enemy } from "./Enemy";
+import { BoomFrames } from "../constants/boomFrames";
 
 export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
   scene: GameScene;
@@ -17,7 +18,7 @@ export abstract class AbstractPrefab extends Phaser.Physics.Arcade.Sprite {
     y: number,
     atlasKey: AssetKeys,
     velocity?: number,
-    frameKey?: EnemyFrames | DragonFrames
+    frameKey?: EnemyFrames | DragonFrames | BoomFrames
   ) {
     super(scene, x, y, atlasKey, frameKey);
     this.scene = scene;
