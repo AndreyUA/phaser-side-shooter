@@ -6,7 +6,7 @@ import { Dragon } from "./Dragon";
 import { Bullet } from "./Bullet";
 
 export class Enemies extends Phaser.Physics.Arcade.Group {
-  readonly count: number = 5;
+  readonly count: number = 20;
   countCreated: number = 0;
   scene: GameScene;
   timer: Phaser.Time.TimerEvent | null = null;
