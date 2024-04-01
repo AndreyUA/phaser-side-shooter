@@ -6,7 +6,8 @@ export class LoadingBar {
   scene: PreloadScene;
   progressBox: Phaser.GameObjects.Graphics;
   progressBar: Phaser.GameObjects.Graphics;
-  readonly style: Record<string, number> = {};
+  style: Record<string, number> = {};
+  hashFileLoaded: Set<string> = new Set();
 
   constructor(scene: PreloadScene) {
     this.scene = scene;
@@ -25,8 +26,30 @@ export class LoadingBar {
     this.setEvents();
   }
 
+  onComplete(): void {
+    this.progressBar.destroy();
+    this.progressBox.destroy();
+    this.hashFileLoaded.clear();
+  }
+
+  onFileProgress(
+    file:
+      | Phaser.Loader.FileTypes.ImageFile
+      | Phaser.Loader.FileTypes.JSONFile
+      | Phaser.Loader.FileTypes.AudioFile
+  ): void {
+    if (this.hashFileLoaded.has(file.src)) {
+      return;
+    }
+
+    this.hashFileLoaded.add(file.src);
+    console.log(`App loaded file from ${file.src}`);
+  }
+
   setEvents(): void {
     this.scene.load.on("progress", this.showProgressBar, this);
+    this.scene.load.on("fileprogress", this.onFileProgress, this);
+    this.scene.load.on("complete", this.onComplete, this);
   }
 
   showProgressBar(value: number): void {
